@@ -1,8 +1,6 @@
 package es.sanguino.ecommerce;
 
-import es.sanguino.ecommerce.domain.ProductRepository;
-import es.sanguino.ecommerce.domain.ProductUseCase;
-import es.sanguino.ecommerce.domain.ProductUseCaseImpl;
+import es.sanguino.ecommerce.domain.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +16,11 @@ public class AppConfiguration {
     @Bean
     public ProductUseCase productUseCase(ProductRepository productRepository) {
         return new ProductUseCaseImpl(productRepository);
+    }
+
+    @Bean
+    public CartUseCase productUseCase(CartRepository cartRepository) {
+        return new CartUseCaseImpl(cartRepository);
     }
 
 }
