@@ -4,12 +4,12 @@ public class ProductResponseDto {
 
     private Long id;
     private String name;
-    private Long price;
+    private Double price;
 
     public ProductResponseDto() {
     }
 
-    public ProductResponseDto(Long id, String name, Long price) {
+    public ProductResponseDto(Long id, String name, Double price) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -31,11 +31,11 @@ public class ProductResponseDto {
         this.name = name;
     }
 
-    public Long getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

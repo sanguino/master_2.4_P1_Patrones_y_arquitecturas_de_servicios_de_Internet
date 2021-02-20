@@ -6,18 +6,18 @@ public class FullProductDto {
 
 	private Long id;
 	private String name;
-	private Long price;
+	private Double price;
 
 	public FullProductDto() {
 	}
 
-	public FullProductDto(Long id, String name, Long price) {
+	public FullProductDto(Long id, String name, Double price) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
 	}
 
-	public FullProductDto(String name, Long price) {
+	public FullProductDto(String name, Double price) {
 		this(null, name, price);
 	}
 
@@ -37,11 +37,11 @@ public class FullProductDto {
 		this.name = name;
 	}
 
-	public Long getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(Long price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 
