@@ -7,7 +7,7 @@ public interface ProductUseCase {
 
     Collection<FullProductDto> findAll();
 
-    FullProductDto create(ProductDto book);
+    FullProductDto create(ProductDto productDto);
 
     Optional<FullProductDto> findById(Long id);
 
