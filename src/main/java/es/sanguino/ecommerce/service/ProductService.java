@@ -6,7 +6,9 @@ import es.sanguino.ecommerce.domain.ProductDto;
 import es.sanguino.ecommerce.domain.ProductUseCase;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -37,16 +39,18 @@ public class ProductService {
         return productUseCase.create(productDto);
     }
 
-    public Optional<ProductResponseDto> findById(Long id) {
+    public ProductResponseDto findById(Long id) {
         return productUseCase
                 .findById(id)
-                .map(fullProductDto -> modelMapper.map(fullProductDto, ProductResponseDto.class));
+                .map(fullProductDto -> modelMapper.map(fullProductDto, ProductResponseDto.class))
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
     }
 
-    public Optional<ProductResponseDto> deleteById(Long id) {
+    public ProductResponseDto deleteById(Long id) {
         return productUseCase
                 .deleteById(id)
-                .map(fullProductDto -> modelMapper.map(fullProductDto, ProductResponseDto.class));
+                .map(fullProductDto -> modelMapper.map(fullProductDto, ProductResponseDto.class))
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NO_CONTENT, "Product not found"));
     }
 
 }
