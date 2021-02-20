@@ -1,5 +1,6 @@
 package es.sanguino.ecommerce.controller;
 
+import es.sanguino.ecommerce.controller.dto.ProductResponseDto;
 import es.sanguino.ecommerce.domain.dto.FullProductDto;
 import es.sanguino.ecommerce.service.ProductService;
 import org.modelmapper.ModelMapper;

@@ -1,4 +1,4 @@
-package es.sanguino.ecommerce.controller;
+package es.sanguino.ecommerce.controller.dto;
 
 public class ProductResponseDto {
 

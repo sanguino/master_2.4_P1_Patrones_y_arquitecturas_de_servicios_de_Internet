@@ -1,6 +1,6 @@
 package es.sanguino.ecommerce.service;
 
-import es.sanguino.ecommerce.controller.ProductResponseDto;
+import es.sanguino.ecommerce.controller.dto.ProductResponseDto;
 import es.sanguino.ecommerce.domain.ProductUseCase;
 import es.sanguino.ecommerce.domain.dto.FullProductDto;
 import es.sanguino.ecommerce.domain.dto.ProductDto;
