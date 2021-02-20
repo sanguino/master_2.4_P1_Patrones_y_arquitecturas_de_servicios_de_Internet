@@ -29,4 +29,9 @@ public class ProductUseCaseImpl implements ProductUseCase {
     public Optional<FullProductDto> findById(Long id) {
         return productRepository.findById(id);
     }
+
+    @Override
+    public Optional<FullProductDto> deleteById(Long id) {
+        return productRepository.deleteById(id);
+    }
 }

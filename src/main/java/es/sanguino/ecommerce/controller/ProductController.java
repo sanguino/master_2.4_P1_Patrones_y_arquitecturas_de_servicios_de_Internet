@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.Collection;
+import java.util.Optional;
 
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
@@ -39,13 +40,13 @@ public class ProductController {
     }
 
     @GetMapping("/api/products/{id}")
-    public ProductResponseDto getProduct(@PathVariable Long id) {
-        return productService.findById(id).orElseThrow();
+    public Optional<ProductResponseDto> getProduct(@PathVariable Long id) {
+        return productService.findById(id);
     }
 
     @DeleteMapping("/api/products/{id}")
-    public ProductResponseDto deleteProduct(@PathVariable Long id) {
-        return productService.deleteById(id).orElseThrow();
+    public Optional<ProductResponseDto> deleteProduct(@PathVariable Long id) {
+        return productService.deleteById(id);
     }
 
 

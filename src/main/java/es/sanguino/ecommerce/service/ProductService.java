@@ -45,7 +45,7 @@ public class ProductService {
 
     public Optional<ProductResponseDto> deleteById(Long id) {
         return productUseCase
-                .findById(id)
+                .deleteById(id)
                 .map(fullProductDto -> modelMapper.map(fullProductDto, ProductResponseDto.class));
     }
 

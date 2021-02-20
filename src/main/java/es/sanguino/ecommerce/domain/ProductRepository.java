@@ -11,4 +11,6 @@ public interface ProductRepository {
 
     Optional<FullProductDto> findById(Long id);
 
+    Optional<FullProductDto> deleteById(Long id);
+
 }

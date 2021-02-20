@@ -46,4 +46,14 @@ public class ProductRepositoryAdapter implements ProductRepository {
 
         return productEntity.map(entity -> modelMapper.map(entity, FullProductDto.class));
     }
+
+    @Override
+    public Optional<FullProductDto> deleteById(Long id) {
+        Optional<FullProductDto> productEntity = this.findById(id);
+        if (productEntity.isPresent()) {
+            productJpaRepository.deleteById(id);
+            return productEntity;
+        }
+        return Optional.empty();
+    }
 }
