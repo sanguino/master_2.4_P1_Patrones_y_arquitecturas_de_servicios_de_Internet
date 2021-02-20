@@ -3,13 +3,13 @@ package es.sanguino.ecommerce.domain;
 public class ProductDto {
 
     private String name;
-    private long price;
+    private Long price;
 
     public ProductDto() {
 
     }
 
-    public ProductDto(String name, long price) {
+    public ProductDto(String name, Long price) {
         this.name = name;
         this.price = price;
     }
@@ -22,11 +22,11 @@ public class ProductDto {
         this.name = name;
     }
 
-    public long getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 

@@ -2,24 +2,24 @@ package es.sanguino.ecommerce.controller;
 
 public class ProductResponseDto {
 
-    private long id;
+    private Long id;
     private String name;
-    private long price;
+    private Long price;
 
     public ProductResponseDto() {
     }
 
-    public ProductResponseDto(long id, String name, long price) {
+    public ProductResponseDto(Long id, String name, Long price) {
         this.id = id;
         this.name = name;
         this.price = price;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -31,11 +31,11 @@ public class ProductResponseDto {
         this.name = name;
     }
 
-    public long getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 
