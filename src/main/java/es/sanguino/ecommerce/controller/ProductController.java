@@ -1,13 +1,11 @@
 package es.sanguino.ecommerce.controller;
 
-import es.sanguino.ecommerce.domain.FullProductDto;
+import es.sanguino.ecommerce.domain.dto.FullProductDto;
 import es.sanguino.ecommerce.service.ProductService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.net.URI;
 import java.util.Collection;

@@ -1,7 +1,7 @@
 package es.sanguino.ecommerce.infrastructure;
 
-import es.sanguino.ecommerce.domain.FullProductDto;
 import es.sanguino.ecommerce.domain.ProductRepository;
+import es.sanguino.ecommerce.domain.dto.FullProductDto;
 import es.sanguino.ecommerce.infrastructure.entity.ProductEntity;
 import es.sanguino.ecommerce.infrastructure.repository.ProductJpaRepository;
 import org.modelmapper.ModelMapper;

@@ -1,4 +1,4 @@
-package es.sanguino.ecommerce.domain;
+package es.sanguino.ecommerce.domain.dto;
 
 public class ProductDto {
 

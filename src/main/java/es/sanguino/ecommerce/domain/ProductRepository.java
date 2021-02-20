@@ -1,5 +1,7 @@
 package es.sanguino.ecommerce.domain;
 
+import es.sanguino.ecommerce.domain.dto.FullProductDto;
+
 import java.util.List;
 import java.util.Optional;
 

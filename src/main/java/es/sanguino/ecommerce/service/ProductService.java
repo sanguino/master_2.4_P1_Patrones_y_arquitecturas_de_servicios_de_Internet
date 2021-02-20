@@ -1,9 +1,9 @@
 package es.sanguino.ecommerce.service;
 
 import es.sanguino.ecommerce.controller.ProductResponseDto;
-import es.sanguino.ecommerce.domain.FullProductDto;
-import es.sanguino.ecommerce.domain.ProductDto;
 import es.sanguino.ecommerce.domain.ProductUseCase;
+import es.sanguino.ecommerce.domain.dto.FullProductDto;
+import es.sanguino.ecommerce.domain.dto.ProductDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collection;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
