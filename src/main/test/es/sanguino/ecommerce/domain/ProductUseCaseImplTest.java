@@ -5,13 +5,17 @@ import es.sanguino.ecommerce.domain.dto.FullProductDto;
 import es.sanguino.ecommerce.domain.model.Product;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.*;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 public class ProductUseCaseImplTest {
     @Mock
@@ -28,7 +32,7 @@ public class ProductUseCaseImplTest {
 
     @Before
     public void before() {
-        MockitoAnnotations.initMocks(this);
+        initMocks(this);
     }
 
     public FullProductDto create(Product product) {
