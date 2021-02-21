@@ -34,4 +34,10 @@ public class CartController {
         return ResponseEntity.created(location).body(cartResponseDto);
     }
 
+
+    @GetMapping("/api/shoppingcarts/{id}")
+    public ResponseEntity<CartResponseDto> getProduct(@PathVariable Long id) {
+        return ResponseEntity.ok(cartService.findById(id));
+    }
+
 }

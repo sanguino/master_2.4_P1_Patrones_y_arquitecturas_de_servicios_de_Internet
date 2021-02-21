@@ -1,25 +1,24 @@
 package es.sanguino.ecommerce.controller.dto;
 
-import es.sanguino.ecommerce.domain.dto.FullProductDto;
 
 import java.util.Map;
 
 public class CartResponseDto {
 
     private Long id;
-    private Map<FullProductDto, Long> products;
+    private Map<ProductResponseDto, Long> products;
     private Boolean finalized;
 
     public CartResponseDto() {
     }
 
-    public CartResponseDto(Long id, Map<FullProductDto, Long> products, Boolean finalized) {
+    public CartResponseDto(Long id, Map<ProductResponseDto, Long> products, Boolean finalized) {
         this.id = id;
         this.products = products;
         this.finalized = finalized;
     }
 
-    public CartResponseDto(Map<FullProductDto, Long> products, Boolean finalized) {
+    public CartResponseDto(Map<ProductResponseDto, Long> products, Boolean finalized) {
         this(null, products, finalized);
     }
 
@@ -31,11 +30,11 @@ public class CartResponseDto {
         this.id = id;
     }
 
-    public Map<FullProductDto, Long> getProducts() {
+    public Map<ProductResponseDto, Long> getProducts() {
         return products;
     }
 
-    public void setProducts(Map<FullProductDto, Long> products) {
+    public void setProducts(Map<ProductResponseDto, Long> products) {
         this.products = products;
     }
 
