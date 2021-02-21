@@ -34,6 +34,10 @@ public class CartController {
         return ResponseEntity.created(location).body(cartResponseDto);
     }
 
+    @PatchMapping("/api/shoppingcarts/{id}")
+    public ResponseEntity<CartResponseDto> patchCart(@PathVariable Long id) {
+        return ResponseEntity.ok(cartService.finalizeById(id));
+    }
 
     @GetMapping("/api/shoppingcarts/{id}")
     public ResponseEntity<CartResponseDto> getCart(@PathVariable Long id) {

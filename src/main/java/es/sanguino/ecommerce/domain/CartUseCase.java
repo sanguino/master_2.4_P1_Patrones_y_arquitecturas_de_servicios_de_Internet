@@ -10,4 +10,5 @@ public interface CartUseCase {
 
     Optional<FullCartDto> findById(Long id);
 
+    Optional<FullCartDto> finalizeById(Long id);
 }

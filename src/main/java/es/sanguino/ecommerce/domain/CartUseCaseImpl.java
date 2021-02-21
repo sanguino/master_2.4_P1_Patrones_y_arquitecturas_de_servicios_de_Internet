@@ -22,4 +22,14 @@ public class CartUseCaseImpl implements CartUseCase{
         return cartRepository.findById(id);
     }
 
+    @Override
+    public Optional<FullCartDto> finalizeById(Long id) {
+        Optional<FullCartDto> fullCartDto = this.findById(id);
+        if (fullCartDto.isPresent()) {
+            fullCartDto.get().setFinalized(true);
+            return Optional.of(cartRepository.update(fullCartDto.get()));
+        }
+        return fullCartDto;
+    }
+
 }

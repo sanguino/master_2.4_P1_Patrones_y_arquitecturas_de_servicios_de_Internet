@@ -10,4 +10,5 @@ public interface CartRepository {
 
     Optional<FullCartDto> findById(Long id);
 
+    FullCartDto update(FullCartDto fullCartDto);
 }
