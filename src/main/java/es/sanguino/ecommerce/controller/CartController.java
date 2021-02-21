@@ -45,7 +45,13 @@ public class CartController {
     }
 
     @PostMapping("/api/shoppingcarts/{cartId}/product/{prodId}/quantity/{prodQuantity}")
-    public ResponseEntity<CartResponseDto> createCart(@PathVariable Long cartId, @PathVariable Long prodId, @PathVariable Long prodQuantity) {
-        return ResponseEntity.ok(cartService.addProduct(cartId, prodId, prodQuantity));
+    public ResponseEntity<CartResponseDto> addProduct(@PathVariable Long cartId, @PathVariable Long prodId, @PathVariable Long prodQuantity) {
+        CartResponseDto cartResponseDto = cartService.addProduct(cartId, prodId, prodQuantity);
+        return ResponseEntity.ok(cartResponseDto);
+    }
+
+    @DeleteMapping("/api/shoppingcarts/{cartId}/product/{prodId}")
+    public ResponseEntity<CartResponseDto> removeProduct(@PathVariable Long cartId, @PathVariable Long prodId) {
+        return ResponseEntity.ok(cartService.removeProduct(cartId, prodId));
     }
 }

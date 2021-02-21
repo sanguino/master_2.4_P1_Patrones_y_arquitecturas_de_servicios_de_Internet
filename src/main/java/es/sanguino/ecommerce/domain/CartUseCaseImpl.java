@@ -3,6 +3,7 @@ package es.sanguino.ecommerce.domain;
 import es.sanguino.ecommerce.domain.dto.FullCartDto;
 import es.sanguino.ecommerce.domain.dto.FullProductDto;
 
+import java.util.Map;
 import java.util.Optional;
 
 public class CartUseCaseImpl implements CartUseCase {
@@ -49,7 +50,27 @@ public class CartUseCaseImpl implements CartUseCase {
             fullCartDto.get().getProducts().put(fullProductDto.get(), prodQuantity);
             return Optional.of(cartRepository.update(fullCartDto.get()));
         }
-        return fullCartDto;
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<FullCartDto> removeProduct(Long cartId, Long prodId) {
+        Optional<FullCartDto> fullCartDto = this.findById(cartId);
+        if (fullCartDto.isPresent()) {
+            Optional<FullProductDto> fullProductDto = fullCartDto.get().getProducts().entrySet()
+                    .stream()
+                    .filter(entry -> entry.getKey().getId().equals(prodId))
+                    .findFirst()
+                    .map(Map.Entry::getKey);
+
+             if (fullProductDto.isPresent()) {
+                 fullCartDto.get().getProducts().remove(fullProductDto.get());
+                 return Optional.of(cartRepository.update(fullCartDto.get()));
+             } else {
+                 return Optional.empty();
+             }
+        }
+        return Optional.empty();
     }
 
 }

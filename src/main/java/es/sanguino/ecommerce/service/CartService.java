@@ -73,4 +73,11 @@ public class CartService {
                 .map(CartService::mapper)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cart or product not found"));
     }
+
+    public CartResponseDto removeProduct(Long cartId, Long prodId) {
+        return cartUseCase
+                .removeProduct(cartId, prodId)
+                .map(CartService::mapper)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cart or product not found"));
+    }
 }
