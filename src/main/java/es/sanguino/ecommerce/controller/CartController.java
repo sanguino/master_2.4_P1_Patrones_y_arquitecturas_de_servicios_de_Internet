@@ -24,12 +24,9 @@ public class CartController {
 
     @PostMapping("/api/shoppingcarts")
     public ResponseEntity<CartResponseDto> createCart() {
-
-        FullCartDto fullCartDto = cartService.save();
-        CartResponseDto cartResponseDto = modelMapper.map(fullCartDto, CartResponseDto.class);
-
+        CartResponseDto cartResponseDto = cartService.save();
         URI location = fromCurrentRequest().path("/{id}")
-                .buildAndExpand(fullCartDto.getId()).toUri();
+                .buildAndExpand(cartResponseDto.getId()).toUri();
 
         return ResponseEntity.created(location).body(cartResponseDto);
     }

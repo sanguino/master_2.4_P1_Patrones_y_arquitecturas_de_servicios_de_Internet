@@ -42,8 +42,8 @@ public class CartService {
         return cartResponseDto;
     }
 
-    public FullCartDto save() {
-        return cartUseCase.create();
+    public CartResponseDto save() {
+        return CartService.mapper(cartUseCase.create());
     }
 
     public CartResponseDto findById(Long id) {
