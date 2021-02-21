@@ -19,7 +19,7 @@ public class AppConfiguration {
     }
 
     @Bean
-    public CartUseCase productUseCase(CartRepository cartRepository) {
+    public CartUseCase cartUseCase(CartRepository cartRepository) {
         return new CartUseCaseImpl(cartRepository);
     }
 
