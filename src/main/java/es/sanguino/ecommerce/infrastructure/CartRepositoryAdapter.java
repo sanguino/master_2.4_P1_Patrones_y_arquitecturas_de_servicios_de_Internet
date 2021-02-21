@@ -1,8 +1,10 @@
 package es.sanguino.ecommerce.infrastructure;
 
 import es.sanguino.ecommerce.domain.CartRepository;
+import es.sanguino.ecommerce.domain.dto.CartDto;
 import es.sanguino.ecommerce.domain.dto.FullCartDto;
 import es.sanguino.ecommerce.domain.dto.FullProductDto;
+import es.sanguino.ecommerce.domain.dto.ProductDto;
 import es.sanguino.ecommerce.infrastructure.entity.CartEntity;
 import es.sanguino.ecommerce.infrastructure.entity.ProductEntity;
 import es.sanguino.ecommerce.infrastructure.repository.CartJpaRepository;
@@ -33,6 +35,15 @@ public class CartRepositoryAdapter implements CartRepository {
         return productsMap;
     }
 
+    private static HashMap<ProductEntity, Long> mapperHashMap2Entity(Map<ProductDto, Long> productDtoMap) {
+        HashMap<ProductEntity, Long> productsMap = new HashMap<>();
+        productDtoMap.forEach((key, value) -> {
+            ProductEntity productEntity = modelMapper.map(key, ProductEntity.class);
+            productsMap.put(productEntity, value);
+        });
+        return productsMap;
+    }
+
     private static FullCartDto mapperCartEntity2FullCartDto(CartEntity cartEntity) {
         FullCartDto fullCartDto = new FullCartDto();
         fullCartDto.setFinalized(cartEntity.getFinalized());
@@ -51,11 +62,11 @@ public class CartRepositoryAdapter implements CartRepository {
     private CartJpaRepository cartJpaRepository;
 
     @Override
-    public FullCartDto save(FullCartDto fullCartDto) {
+    public FullCartDto save(CartDto cartDto) {
         CartEntity cartEntity = new CartEntity();
-        cartEntity.setFinalized(fullCartDto.getFinalized());
+        cartEntity.setFinalized(cartDto.getFinalized());
 
-        cartEntity.setProducts(CartRepositoryAdapter.mapperHashMapFull2Entity(fullCartDto.getProducts()));
+        cartEntity.setProducts(CartRepositoryAdapter.mapperHashMap2Entity(cartDto.getProducts()));
 
         CartEntity savedCartEntity = cartJpaRepository.save(cartEntity);
 

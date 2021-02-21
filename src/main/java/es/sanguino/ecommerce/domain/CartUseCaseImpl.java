@@ -1,5 +1,6 @@
 package es.sanguino.ecommerce.domain;
 
+import es.sanguino.ecommerce.domain.dto.CartDto;
 import es.sanguino.ecommerce.domain.dto.FullCartDto;
 import es.sanguino.ecommerce.domain.dto.FullProductDto;
 
@@ -19,7 +20,7 @@ public class CartUseCaseImpl implements CartUseCase {
 
     @Override
     public FullCartDto create() {
-        return this.cartRepository.save(new FullCartDto());
+        return this.cartRepository.save(new CartDto());
     }
 
     @Override

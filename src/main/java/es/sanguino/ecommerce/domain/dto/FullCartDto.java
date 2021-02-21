@@ -10,8 +10,6 @@ public class FullCartDto {
     private Boolean finalized;
 
     public FullCartDto() {
-        this.finalized = false;
-        this.products = new HashMap<>();
     }
 
     public FullCartDto(Long id, Map<FullProductDto, Long> products, Boolean finalized) {
