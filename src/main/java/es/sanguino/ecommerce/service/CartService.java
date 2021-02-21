@@ -1,6 +1,7 @@
 package es.sanguino.ecommerce.service;
 
 import es.sanguino.ecommerce.controller.dto.CartResponseDto;
+import es.sanguino.ecommerce.controller.dto.ProductQuantityResponseDto;
 import es.sanguino.ecommerce.controller.dto.ProductResponseDto;
 import es.sanguino.ecommerce.domain.CartUseCase;
 import es.sanguino.ecommerce.domain.dto.FullCartDto;
@@ -10,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 public class CartService {
@@ -33,12 +36,13 @@ public class CartService {
         cartResponseDto.setFinalized(fullCartDto.getFinalized());
         cartResponseDto.setId(fullCartDto.getId());
 
-        HashMap<ProductResponseDto, Long> productsMap = new HashMap<>();
+        List<ProductQuantityResponseDto> products = new ArrayList<>();
         fullCartDto.getProducts().forEach((key, value) -> {
-            ProductResponseDto productResponseDto = modelMapper.map(key, ProductResponseDto.class);
-            productsMap.put(productResponseDto, value);
+            ProductQuantityResponseDto productQuantityResponseDto = modelMapper.map(key, ProductQuantityResponseDto.class);
+            productQuantityResponseDto.setQuantity(value);
+            products.add(productQuantityResponseDto);
         });
-        cartResponseDto.setProducts(productsMap);
+        cartResponseDto.setProducts(products);
         return cartResponseDto;
     }
 
