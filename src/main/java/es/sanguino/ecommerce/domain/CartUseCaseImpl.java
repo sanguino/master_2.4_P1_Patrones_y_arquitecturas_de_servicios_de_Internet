@@ -1,8 +1,8 @@
 package es.sanguino.ecommerce.domain;
 
-import es.sanguino.ecommerce.domain.dto.CartDto;
 import es.sanguino.ecommerce.domain.dto.FullCartDto;
 import es.sanguino.ecommerce.domain.dto.FullProductDto;
+import es.sanguino.ecommerce.domain.model.Cart;
 
 import java.util.Map;
 import java.util.Optional;
@@ -20,7 +20,7 @@ public class CartUseCaseImpl implements CartUseCase {
 
     @Override
     public FullCartDto create() {
-        return this.cartRepository.save(new CartDto());
+        return this.cartRepository.save(new Cart());
     }
 
     @Override
@@ -64,12 +64,12 @@ public class CartUseCaseImpl implements CartUseCase {
                     .findFirst()
                     .map(Map.Entry::getKey);
 
-             if (fullProductDto.isPresent()) {
-                 fullCartDto.get().getProducts().remove(fullProductDto.get());
-                 return Optional.of(cartRepository.update(fullCartDto.get()));
-             } else {
-                 return Optional.empty();
-             }
+            if (fullProductDto.isPresent()) {
+                fullCartDto.get().getProducts().remove(fullProductDto.get());
+                return Optional.of(cartRepository.update(fullCartDto.get()));
+            } else {
+                return Optional.empty();
+            }
         }
         return Optional.empty();
     }

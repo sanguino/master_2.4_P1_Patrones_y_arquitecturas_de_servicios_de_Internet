@@ -1,7 +1,7 @@
 package es.sanguino.ecommerce.domain;
 
 import es.sanguino.ecommerce.domain.dto.FullProductDto;
-import es.sanguino.ecommerce.domain.dto.ProductDto;
+import es.sanguino.ecommerce.domain.model.Product;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -20,10 +20,10 @@ public class ProductUseCaseImpl implements ProductUseCase {
     }
 
     @Override
-    public FullProductDto create(ProductDto productDto) {
+    public FullProductDto create(Product product) {
         FullProductDto fullProductDto = new FullProductDto(
-                productDto.getName(),
-                productDto.getPrice()
+                product.getName(),
+                product.getPrice()
         );
         return productRepository.save(fullProductDto);
     }

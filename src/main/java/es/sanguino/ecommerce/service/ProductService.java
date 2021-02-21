@@ -3,7 +3,7 @@ package es.sanguino.ecommerce.service;
 import es.sanguino.ecommerce.controller.dto.ProductResponseDto;
 import es.sanguino.ecommerce.domain.ProductUseCase;
 import es.sanguino.ecommerce.domain.dto.FullProductDto;
-import es.sanguino.ecommerce.domain.dto.ProductDto;
+import es.sanguino.ecommerce.domain.model.Product;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,8 +34,8 @@ public class ProductService {
     }
 
     public FullProductDto save(ProductResponseDto productResponseDto) {
-        ProductDto productDto = modelMapper.map(productResponseDto, ProductDto.class);
-        return productUseCase.create(productDto);
+        Product product = modelMapper.map(productResponseDto, Product.class);
+        return productUseCase.create(product);
     }
 
     public ProductResponseDto findById(Long id) {

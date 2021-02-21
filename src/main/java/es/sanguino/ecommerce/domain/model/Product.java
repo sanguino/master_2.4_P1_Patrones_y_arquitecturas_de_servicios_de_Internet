@@ -1,15 +1,15 @@
-package es.sanguino.ecommerce.domain.dto;
+package es.sanguino.ecommerce.domain.model;
 
-public class ProductDto {
+public class Product {
 
     private String name;
     private Double price;
 
-    public ProductDto() {
+    public Product() {
 
     }
 
-    public ProductDto(String name, Double price) {
+    public Product(String name, Double price) {
         this.name = name;
         this.price = price;
     }
