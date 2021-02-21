@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.*;
 
-import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -22,6 +22,9 @@ public class ProductUseCaseImplTest {
 
     @Captor
     ArgumentCaptor<FullProductDto> argumentFullProductDto;
+
+    @Captor
+    ArgumentCaptor<Long> argumentLong;
 
     @Before
     public void before() {
@@ -49,5 +52,19 @@ public class ProductUseCaseImplTest {
         FullProductDto capturedFullProductDto = this.argumentFullProductDto.getValue();
         assertEquals(returnedFullProductDto.getName(), capturedFullProductDto.getName());
         assertEquals(returnedFullProductDto.getPrice(), capturedFullProductDto.getPrice());
+    }
+
+    @Test
+    public void testGivenIdWhenDeleteProductThenRepositoryIsCalled() {
+        Long id = 1L;
+        String prodName = "product1";
+        Double prodPrice = 23.21;
+        FullProductDto fullProductDto = new FullProductDto(id, prodName, prodPrice);
+        when(this.productRepository.deleteById(any(Long.class))).thenReturn(Optional.of(fullProductDto));
+
+
+        this.productUseCase.deleteById(id);
+        verify(this.productRepository, times(1)).deleteById(this.argumentLong.capture());
+        assertEquals(id, this.argumentLong.getValue());
     }
 }
