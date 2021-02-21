@@ -23,9 +23,9 @@ public class CartController {
     ModelMapper modelMapper;
 
     @PostMapping("/api/shoppingcarts")
-    public ResponseEntity<CartResponseDto> createProduct(@RequestBody CartResponseDto cart) {
+    public ResponseEntity<CartResponseDto> createProduct() {
 
-        FullCartDto fullCartDto = cartService.save(cart);
+        FullCartDto fullCartDto = cartService.save();
         CartResponseDto cartResponseDto = modelMapper.map(fullCartDto, CartResponseDto.class);
 
         URI location = fromCurrentRequest().path("/{id}")

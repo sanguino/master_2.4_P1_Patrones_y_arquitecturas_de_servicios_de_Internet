@@ -25,9 +25,8 @@ public class CartService {
         this.cartUseCase = cartUseCase;
     }
 
-    public FullCartDto save(CartResponseDto cartResponseDto) {
-        CartDto cartDto = modelMapper.map(cartResponseDto, CartDto.class);
-        return cartUseCase.create(cartDto);
+    public FullCartDto save() {
+        return cartUseCase.create();
     }
 
     public CartResponseDto findById(Long id) {
