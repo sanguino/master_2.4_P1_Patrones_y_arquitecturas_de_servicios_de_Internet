@@ -81,13 +81,16 @@ public class CartRepositoryAdapter implements CartRepository {
     }
 
     @Override
-    public FullCartDto update(FullCartDto fullCartDto) {
-        CartEntity cartEntity = cartJpaRepository.findById(fullCartDto.getId()).get();
-        cartEntity.setFinalized(fullCartDto.getFinalized());
-        cartEntity.setProducts(CartRepositoryAdapter.mapperHashMapFull2Entity(fullCartDto.getProducts()));
-        cartJpaRepository.save(cartEntity);
+    public Optional<FullCartDto> update(FullCartDto fullCartDto) {
+        Optional<CartEntity> cartEntity = cartJpaRepository.findById(fullCartDto.getId());
+        if (cartEntity.isPresent()) {
+            cartEntity.get().setFinalized(fullCartDto.getFinalized());
+            cartEntity.get().setProducts(CartRepositoryAdapter.mapperHashMapFull2Entity(fullCartDto.getProducts()));
+            cartJpaRepository.save(cartEntity.get());
 
-        return CartRepositoryAdapter.mapperCartEntity2FullCartDto(cartEntity);
+            return Optional.of(CartRepositoryAdapter.mapperCartEntity2FullCartDto(cartEntity.get()));
+        }
+        return Optional.empty();
     }
 
     @Override

@@ -33,7 +33,7 @@ public class CartUseCaseImpl implements CartUseCase {
         Optional<FullCartDto> fullCartDto = this.findById(id);
         if (fullCartDto.isPresent()) {
             fullCartDto.get().setFinalized(true);
-            return Optional.of(cartRepository.update(fullCartDto.get()));
+            return cartRepository.update(fullCartDto.get());
         }
         return fullCartDto;
     }
@@ -49,7 +49,7 @@ public class CartUseCaseImpl implements CartUseCase {
         Optional<FullProductDto> fullProductDto = productRepository.findById(prodId);
         if (fullCartDto.isPresent() && fullProductDto.isPresent()) {
             fullCartDto.get().getProducts().put(fullProductDto.get(), prodQuantity);
-            return Optional.of(cartRepository.update(fullCartDto.get()));
+            return cartRepository.update(fullCartDto.get());
         }
         return Optional.empty();
     }
@@ -66,7 +66,7 @@ public class CartUseCaseImpl implements CartUseCase {
 
             if (fullProductDto.isPresent()) {
                 fullCartDto.get().getProducts().remove(fullProductDto.get());
-                return Optional.of(cartRepository.update(fullCartDto.get()));
+                return cartRepository.update(fullCartDto.get());
             } else {
                 return Optional.empty();
             }
