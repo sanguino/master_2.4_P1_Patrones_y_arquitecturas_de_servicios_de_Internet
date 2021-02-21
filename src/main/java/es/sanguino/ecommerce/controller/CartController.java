@@ -23,7 +23,7 @@ public class CartController {
     ModelMapper modelMapper;
 
     @PostMapping("/api/shoppingcarts")
-    public ResponseEntity<CartResponseDto> createProduct() {
+    public ResponseEntity<CartResponseDto> createCart() {
 
         FullCartDto fullCartDto = cartService.save();
         CartResponseDto cartResponseDto = modelMapper.map(fullCartDto, CartResponseDto.class);
@@ -36,7 +36,7 @@ public class CartController {
 
 
     @GetMapping("/api/shoppingcarts/{id}")
-    public ResponseEntity<CartResponseDto> getProduct(@PathVariable Long id) {
+    public ResponseEntity<CartResponseDto> getCart(@PathVariable Long id) {
         return ResponseEntity.ok(cartService.findById(id));
     }
 
