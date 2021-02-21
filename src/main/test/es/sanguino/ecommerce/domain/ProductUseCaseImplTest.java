@@ -35,14 +35,6 @@ public class ProductUseCaseImplTest {
         initMocks(this);
     }
 
-    public FullProductDto create(Product product) {
-        FullProductDto fullProductDto = new FullProductDto(
-                product.getName(),
-                product.getPrice()
-        );
-        return productRepository.save(fullProductDto);
-    }
-
     @Test
     public void testGivenNewProductWhenSaveProductThenDataIsOk() {
         String prodName = "product1";
