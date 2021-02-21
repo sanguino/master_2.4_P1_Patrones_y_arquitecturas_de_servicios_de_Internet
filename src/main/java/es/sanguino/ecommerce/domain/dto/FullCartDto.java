@@ -1,6 +1,5 @@
 package es.sanguino.ecommerce.domain.dto;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class FullCartDto {

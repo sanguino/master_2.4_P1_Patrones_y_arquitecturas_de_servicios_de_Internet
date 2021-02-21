@@ -1,29 +1,29 @@
-package es.sanguino.ecommerce.domain.dto;
+package es.sanguino.ecommerce.domain.model;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class CartDto {
+public class Cart {
 
 
-    private Map<ProductDto, Long> products;
+    private Map<Product, Long> products;
     private Boolean finalized;
 
-    public CartDto() {
+    public Cart() {
         this.finalized = false;
         this.products = new HashMap<>();
     }
 
-    public CartDto(Map<ProductDto, Long> products, Boolean finalized) {
+    public Cart(Map<Product, Long> products, Boolean finalized) {
         this.products = products;
         this.finalized = finalized;
     }
 
-    public Map<ProductDto, Long> getProducts() {
+    public Map<Product, Long> getProducts() {
         return products;
     }
 
-    public void setProducts(Map<ProductDto, Long> products) {
+    public void setProducts(Map<Product, Long> products) {
         this.products = products;
     }
 

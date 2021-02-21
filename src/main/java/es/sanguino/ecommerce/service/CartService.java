@@ -2,7 +2,6 @@ package es.sanguino.ecommerce.service;
 
 import es.sanguino.ecommerce.controller.dto.CartResponseDto;
 import es.sanguino.ecommerce.controller.dto.ProductQuantityResponseDto;
-import es.sanguino.ecommerce.controller.dto.ProductResponseDto;
 import es.sanguino.ecommerce.domain.CartUseCase;
 import es.sanguino.ecommerce.domain.dto.FullCartDto;
 import org.modelmapper.ModelMapper;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Service
