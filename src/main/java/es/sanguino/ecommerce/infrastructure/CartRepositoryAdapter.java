@@ -79,4 +79,15 @@ public class CartRepositoryAdapter implements CartRepository {
         return CartRepositoryAdapter.mapperCartEntity2FullCartDto(cartEntity);
     }
 
+    @Override
+    public Optional<FullCartDto> deleteById(Long id) {
+        Optional<FullCartDto> cartEntity = this.findById(id);
+
+        if (cartEntity.isPresent()) {
+            cartJpaRepository.deleteById(id);
+            return cartEntity;
+        }
+        return Optional.empty();
+    }
+
 }

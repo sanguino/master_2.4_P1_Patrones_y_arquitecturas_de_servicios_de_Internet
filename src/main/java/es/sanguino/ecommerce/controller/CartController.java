@@ -44,4 +44,9 @@ public class CartController {
         return ResponseEntity.ok(cartService.findById(id));
     }
 
+    @DeleteMapping("/api/shoppingcarts/{id}")
+    public ResponseEntity<CartResponseDto> deleteCart(@PathVariable Long id) {
+        return ResponseEntity.ok(cartService.deleteById(id));
+    }
+
 }

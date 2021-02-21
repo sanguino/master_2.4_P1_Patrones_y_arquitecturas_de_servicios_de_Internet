@@ -32,4 +32,9 @@ public class CartUseCaseImpl implements CartUseCase{
         return fullCartDto;
     }
 
+    @Override
+    public Optional<FullCartDto> deleteById(Long id) {
+        return cartRepository.deleteById(id);
+    }
+
 }
