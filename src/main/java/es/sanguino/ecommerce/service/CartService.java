@@ -35,6 +35,7 @@ public class CartService {
                 .map(fullCartDto -> {
                     CartResponseDto cartResponseDto = new CartResponseDto();
                     cartResponseDto.setFinalized(fullCartDto.getFinalized());
+                    cartResponseDto.setId(fullCartDto.getId());
 
                     HashMap<ProductResponseDto, Long> productsMap = new HashMap<>();
                     fullCartDto.getProducts().forEach((key, value) -> {

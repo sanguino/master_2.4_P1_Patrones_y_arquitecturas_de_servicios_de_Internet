@@ -48,6 +48,7 @@ public class CartRepositoryAdapter implements CartRepository {
         return cartEntity.map(entity -> {
             FullCartDto fullCartDto = new FullCartDto();
             fullCartDto.setFinalized(entity.getFinalized());
+            fullCartDto.setId(entity.getId());
 
             HashMap<FullProductDto, Long> fullProductDtoLongHashMap = new HashMap<>();
             entity.getProducts().forEach((key, value) -> {
