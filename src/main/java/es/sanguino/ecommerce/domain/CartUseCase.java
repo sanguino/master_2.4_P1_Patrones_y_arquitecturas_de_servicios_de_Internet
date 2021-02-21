@@ -14,4 +14,6 @@ public interface CartUseCase {
     Optional<FullCartDto> finalizeById(Long id);
 
     Optional<FullCartDto> deleteById(Long id);
+
+    Optional<FullCartDto> addProduct(Long cartId, Long prodId, Long prodQuantity);
 }

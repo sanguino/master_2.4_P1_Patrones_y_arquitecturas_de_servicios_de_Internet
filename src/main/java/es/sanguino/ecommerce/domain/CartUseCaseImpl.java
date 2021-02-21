@@ -1,6 +1,7 @@
 package es.sanguino.ecommerce.domain;
 
 import es.sanguino.ecommerce.domain.dto.FullCartDto;
+import es.sanguino.ecommerce.domain.dto.FullProductDto;
 
 import java.util.Optional;
 
@@ -8,8 +9,11 @@ public class CartUseCaseImpl implements CartUseCase{
 
     private CartRepository cartRepository;
 
-    public CartUseCaseImpl(CartRepository repository) {
+    private ProductRepository productRepository;
+
+    public CartUseCaseImpl(CartRepository repository, ProductRepository productRepository) {
         this.cartRepository = repository;
+        this.productRepository = productRepository;
     }
 
     @Override
@@ -35,6 +39,17 @@ public class CartUseCaseImpl implements CartUseCase{
     @Override
     public Optional<FullCartDto> deleteById(Long id) {
         return cartRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<FullCartDto> addProduct(Long cartId, Long prodId, Long prodQuantity) {
+        Optional<FullCartDto> fullCartDto = this.findById(cartId);
+        Optional<FullProductDto> fullProductDto = productRepository.findById(prodId);
+        if (fullCartDto.isPresent() && fullProductDto.isPresent()) {
+            fullCartDto.get().getProducts().put(fullProductDto.get(), prodQuantity);
+            return Optional.of(cartRepository.update(fullCartDto.get()));
+        }
+        return fullCartDto;
     }
 
 }
