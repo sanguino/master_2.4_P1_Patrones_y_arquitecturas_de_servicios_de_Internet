@@ -20,7 +20,7 @@ public class CartService {
     private static ModelMapper modelMapper;
 
     @Autowired
-    public void setModelMapper(ModelMapper modelMapper){
+    public void setModelMapper(ModelMapper modelMapper) {
         CartService.modelMapper = modelMapper;
     }
 

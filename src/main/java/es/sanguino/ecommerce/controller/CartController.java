@@ -1,8 +1,6 @@
 package es.sanguino.ecommerce.controller;
 
 import es.sanguino.ecommerce.controller.dto.CartResponseDto;
-import es.sanguino.ecommerce.controller.dto.ProductResponseDto;
-import es.sanguino.ecommerce.domain.dto.FullCartDto;
 import es.sanguino.ecommerce.service.CartService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

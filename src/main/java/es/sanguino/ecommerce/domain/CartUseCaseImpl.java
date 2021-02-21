@@ -5,7 +5,7 @@ import es.sanguino.ecommerce.domain.dto.FullProductDto;
 
 import java.util.Optional;
 
-public class CartUseCaseImpl implements CartUseCase{
+public class CartUseCaseImpl implements CartUseCase {
 
     private CartRepository cartRepository;
 
