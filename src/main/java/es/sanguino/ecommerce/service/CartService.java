@@ -50,13 +50,13 @@ public class CartService {
         return cartUseCase
                 .findById(id)
                 .map(CartService::mapper)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cart not found"));
     }
 
     public CartResponseDto finalizeById(Long id) {
         return cartUseCase
                 .finalizeById(id)
                 .map(CartService::mapper)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cart not found"));
     }
 }
