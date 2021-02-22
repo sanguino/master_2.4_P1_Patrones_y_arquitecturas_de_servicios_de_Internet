@@ -67,8 +67,6 @@ public class CartUseCaseImpl implements CartUseCase {
             if (fullProductDto.isPresent()) {
                 fullCartDto.get().getProducts().remove(fullProductDto.get());
                 return cartRepository.update(fullCartDto.get());
-            } else {
-                return Optional.empty();
             }
         }
         return Optional.empty();
