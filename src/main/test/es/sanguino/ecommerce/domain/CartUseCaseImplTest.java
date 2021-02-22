@@ -4,7 +4,6 @@ package es.sanguino.ecommerce.domain;
 import es.sanguino.ecommerce.domain.dto.FullCartDto;
 import es.sanguino.ecommerce.domain.dto.FullProductDto;
 import es.sanguino.ecommerce.domain.model.Cart;
-import es.sanguino.ecommerce.domain.model.Product;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
