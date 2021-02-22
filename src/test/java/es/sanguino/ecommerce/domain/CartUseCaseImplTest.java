@@ -1,11 +1,10 @@
 package es.sanguino.ecommerce.domain;
 
-
 import es.sanguino.ecommerce.domain.dto.FullCartDto;
 import es.sanguino.ecommerce.domain.dto.FullProductDto;
 import es.sanguino.ecommerce.domain.model.Cart;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
@@ -14,12 +13,13 @@ import org.mockito.Mock;
 import java.util.HashMap;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 public class CartUseCaseImplTest {
+
     @Mock
     private CartRepository cartRepository;
 
@@ -29,7 +29,7 @@ public class CartUseCaseImplTest {
     @InjectMocks
     CartUseCaseImpl cartUseCase;
 
-    @Before
+    @BeforeEach
     public void before() {
         initMocks(this);
     }
@@ -57,7 +57,7 @@ public class CartUseCaseImplTest {
         Double prodPrice = 23.21;
 
         FullProductDto fullProductDto = new FullProductDto(prodName, prodPrice);
-        FullCartDto fullCartDto = new FullCartDto(cartId,new HashMap<>(), false);
+        FullCartDto fullCartDto = new FullCartDto(cartId, new HashMap<>(), false);
         when(this.cartRepository.findById(cartId)).thenReturn(Optional.of(fullCartDto));
         when(this.productRepository.findById(prodId)).thenReturn(Optional.of(fullProductDto));
         when(this.cartRepository.update(fullCartDto)).thenReturn(Optional.of(fullCartDto));
@@ -83,7 +83,7 @@ public class CartUseCaseImplTest {
         FullProductDto fullProductDto = new FullProductDto(prodName, prodPrice);
         HashMap<FullProductDto, Long> productsMap = new HashMap<>();
         productsMap.put(fullProductDto, currentQuantity);
-        FullCartDto fullCartDto = new FullCartDto(cartId,productsMap, false);
+        FullCartDto fullCartDto = new FullCartDto(cartId, productsMap, false);
         when(this.cartRepository.findById(cartId)).thenReturn(Optional.of(fullCartDto));
         when(this.productRepository.findById(prodId)).thenReturn(Optional.of(fullProductDto));
         when(this.cartRepository.update(fullCartDto)).thenReturn(Optional.of(fullCartDto));
@@ -124,7 +124,7 @@ public class CartUseCaseImplTest {
         Long prodId = 2L;
         Long prodQuantity = 3L;
 
-        FullCartDto fullCartDto = new FullCartDto(cartId,new HashMap<>(), false);
+        FullCartDto fullCartDto = new FullCartDto(cartId, new HashMap<>(), false);
         when(this.cartRepository.findById(cartId)).thenReturn(Optional.of(fullCartDto));
         when(this.productRepository.findById(prodId)).thenReturn(Optional.empty());
 
