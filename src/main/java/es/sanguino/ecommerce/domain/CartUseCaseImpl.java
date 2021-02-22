@@ -44,10 +44,11 @@ public class CartUseCaseImpl implements CartUseCase {
     }
 
     @Override
-    public Optional<FullCartDto> addProduct(Long cartId, Long prodId, Long prodQuantity) {
+    public Optional<FullCartDto> addOrUpdateProduct(Long cartId, Long prodId, Long prodQuantity) {
         Optional<FullCartDto> fullCartDto = this.findById(cartId);
         Optional<FullProductDto> fullProductDto = productRepository.findById(prodId);
         if (fullCartDto.isPresent() && fullProductDto.isPresent()) {
+            fullCartDto.get().getProducts().remove(fullProductDto.get());
             fullCartDto.get().getProducts().put(fullProductDto.get(), prodQuantity);
             return cartRepository.update(fullCartDto.get());
         }

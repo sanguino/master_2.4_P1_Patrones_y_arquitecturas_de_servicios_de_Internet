@@ -63,7 +63,7 @@ public class CartUseCaseImplTest {
         when(this.productRepository.findById(prodId)).thenReturn(Optional.of(fullProductDto));
         when(this.cartRepository.update(fullCartDto)).thenReturn(Optional.of(fullCartDto));
 
-        Optional<FullCartDto> returnedFullCartDto = this.cartUseCase.addProduct(cartId, prodId, prodQuantity);
+        Optional<FullCartDto> returnedFullCartDto = this.cartUseCase.addOrUpdateProduct(cartId, prodId, prodQuantity);
         verify(this.cartRepository, times(1)).findById(cartId);
         verify(this.productRepository, times(1)).findById(prodId);
 
@@ -84,7 +84,7 @@ public class CartUseCaseImplTest {
         when(this.cartRepository.findById(cartId)).thenReturn(Optional.empty());
         when(this.productRepository.findById(prodId)).thenReturn(Optional.of(fullProductDto));
 
-        Optional<FullCartDto> returnedFullCartDto = this.cartUseCase.addProduct(cartId, prodId, prodQuantity);
+        Optional<FullCartDto> returnedFullCartDto = this.cartUseCase.addOrUpdateProduct(cartId, prodId, prodQuantity);
         verify(this.cartRepository, times(1)).findById(cartId);
         verify(this.productRepository, times(1)).findById(prodId);
 
@@ -101,7 +101,7 @@ public class CartUseCaseImplTest {
         when(this.cartRepository.findById(cartId)).thenReturn(Optional.of(fullCartDto));
         when(this.productRepository.findById(prodId)).thenReturn(Optional.empty());
 
-        Optional<FullCartDto> returnedFullCartDto = this.cartUseCase.addProduct(cartId, prodId, prodQuantity);
+        Optional<FullCartDto> returnedFullCartDto = this.cartUseCase.addOrUpdateProduct(cartId, prodId, prodQuantity);
         verify(this.cartRepository, times(1)).findById(cartId);
         verify(this.productRepository, times(1)).findById(prodId);
 
@@ -117,7 +117,7 @@ public class CartUseCaseImplTest {
         when(this.cartRepository.findById(cartId)).thenReturn(Optional.empty());
         when(this.productRepository.findById(prodId)).thenReturn(Optional.empty());
 
-        Optional<FullCartDto> returnedFullCartDto = this.cartUseCase.addProduct(cartId, prodId, prodQuantity);
+        Optional<FullCartDto> returnedFullCartDto = this.cartUseCase.addOrUpdateProduct(cartId, prodId, prodQuantity);
         verify(this.cartRepository, times(1)).findById(cartId);
         verify(this.productRepository, times(1)).findById(prodId);
 

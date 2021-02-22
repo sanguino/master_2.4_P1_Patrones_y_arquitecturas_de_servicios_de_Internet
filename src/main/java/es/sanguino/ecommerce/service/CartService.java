@@ -69,9 +69,9 @@ public class CartService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NO_CONTENT, "Cart not found"));
     }
 
-    public CartResponseDto addProduct(Long cartId, Long prodId, Long prodQuantity) {
+    public CartResponseDto addOrUpdateProduct(Long cartId, Long prodId, Long prodQuantity) {
         return cartUseCase
-                .addProduct(cartId, prodId, prodQuantity)
+                .addOrUpdateProduct(cartId, prodId, prodQuantity)
                 .map(CartService::mapper)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cart or product not found"));
     }
