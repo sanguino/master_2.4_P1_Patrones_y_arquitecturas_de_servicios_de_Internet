@@ -4,8 +4,10 @@ import es.sanguino.ecommerce.controller.dto.CartResponseDto;
 import es.sanguino.ecommerce.service.CartService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.net.URI;
 
@@ -25,33 +27,31 @@ public class CartController {
         CartResponseDto cartResponseDto = cartService.save();
         URI location = fromCurrentRequest().path("/{id}")
                 .buildAndExpand(cartResponseDto.getId()).toUri();
-
         return ResponseEntity.created(location).body(cartResponseDto);
     }
 
     @PatchMapping("/api/shoppingcarts/{id}")
-    public ResponseEntity<CartResponseDto> patchCart(@PathVariable Long id) {
-        return ResponseEntity.ok(cartService.finalizeById(id));
+    public CartResponseDto patchCart(@PathVariable Long id) {
+        return cartService.finalizeById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cart not found"));
     }
 
     @GetMapping("/api/shoppingcarts/{id}")
-    public ResponseEntity<CartResponseDto> getCart(@PathVariable Long id) {
-        return ResponseEntity.ok(cartService.findById(id));
+    public CartResponseDto getCart(@PathVariable Long id) {
+        return cartService.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cart not found"));
     }
 
     @DeleteMapping("/api/shoppingcarts/{id}")
-    public ResponseEntity<CartResponseDto> deleteCart(@PathVariable Long id) {
-        return ResponseEntity.ok(cartService.deleteById(id));
+    public CartResponseDto deleteCart(@PathVariable Long id) {
+        return cartService.deleteById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NO_CONTENT, "Cart not found"));
     }
 
     @PostMapping("/api/shoppingcarts/{cartId}/product/{prodId}/quantity/{prodQuantity}")
-    public ResponseEntity<CartResponseDto> addOrUpdateProduct(@PathVariable Long cartId, @PathVariable Long prodId, @PathVariable Long prodQuantity) {
-        CartResponseDto cartResponseDto = cartService.addOrUpdateProduct(cartId, prodId, prodQuantity);
-        return ResponseEntity.ok(cartResponseDto);
+    public CartResponseDto addOrUpdateProduct(@PathVariable Long cartId, @PathVariable Long prodId, @PathVariable Long prodQuantity) {
+        return cartService.addOrUpdateProduct(cartId, prodId, prodQuantity).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cart or product not found"));
     }
 
     @DeleteMapping("/api/shoppingcarts/{cartId}/product/{prodId}")
-    public ResponseEntity<CartResponseDto> removeProduct(@PathVariable Long cartId, @PathVariable Long prodId) {
-        return ResponseEntity.ok(cartService.removeProduct(cartId, prodId));
+    public CartResponseDto removeProduct(@PathVariable Long cartId, @PathVariable Long prodId) {
+        return cartService.removeProduct(cartId, prodId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cart or product not found"));
     }
 }

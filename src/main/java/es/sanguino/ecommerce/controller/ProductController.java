@@ -5,11 +5,14 @@ import es.sanguino.ecommerce.domain.dto.FullProductDto;
 import es.sanguino.ecommerce.service.ProductService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.net.URI;
 import java.util.Collection;
+import java.util.Optional;
 
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
@@ -40,13 +43,13 @@ public class ProductController {
     }
 
     @GetMapping("/api/products/{id}")
-    public ResponseEntity<ProductResponseDto> getProduct(@PathVariable Long id) {
-        return ResponseEntity.ok(productService.findById(id));
+    public ProductResponseDto getProduct(@PathVariable Long id) {
+        return productService.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
     }
 
     @DeleteMapping("/api/products/{id}")
-    public ResponseEntity<ProductResponseDto> deleteProduct(@PathVariable Long id) {
-        return ResponseEntity.ok(productService.deleteById(id));
+    public ProductResponseDto deleteProduct(@PathVariable Long id) {
+        return productService.deleteById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NO_CONTENT, "Product not found"));
     }
 
 }

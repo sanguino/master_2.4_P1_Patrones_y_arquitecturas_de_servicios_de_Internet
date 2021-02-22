@@ -12,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CartService {
@@ -48,38 +49,33 @@ public class CartService {
         return CartService.mapper(cartUseCase.create());
     }
 
-    public CartResponseDto findById(Long id) {
+    public Optional<CartResponseDto> findById(Long id) {
         return cartUseCase
                 .findById(id)
-                .map(CartService::mapper)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cart not found"));
+                .map(CartService::mapper);
     }
 
-    public CartResponseDto finalizeById(Long id) {
+    public Optional<CartResponseDto> finalizeById(Long id) {
         return cartUseCase
                 .finalizeById(id)
-                .map(CartService::mapper)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cart not found"));
+                .map(CartService::mapper);
     }
 
-    public CartResponseDto deleteById(Long id) {
+    public Optional<CartResponseDto> deleteById(Long id) {
         return cartUseCase
                 .deleteById(id)
-                .map(CartService::mapper)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NO_CONTENT, "Cart not found"));
+                .map(CartService::mapper);
     }
 
-    public CartResponseDto addOrUpdateProduct(Long cartId, Long prodId, Long prodQuantity) {
+    public Optional<CartResponseDto> addOrUpdateProduct(Long cartId, Long prodId, Long prodQuantity) {
         return cartUseCase
                 .addOrUpdateProduct(cartId, prodId, prodQuantity)
-                .map(CartService::mapper)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cart or product not found"));
+                .map(CartService::mapper);
     }
 
-    public CartResponseDto removeProduct(Long cartId, Long prodId) {
+    public Optional<CartResponseDto> removeProduct(Long cartId, Long prodId) {
         return cartUseCase
                 .removeProduct(cartId, prodId)
-                .map(CartService::mapper)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cart or product not found"));
+                .map(CartService::mapper);
     }
 }

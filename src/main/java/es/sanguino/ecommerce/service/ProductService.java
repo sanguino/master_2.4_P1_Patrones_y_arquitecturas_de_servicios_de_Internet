@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,18 +39,16 @@ public class ProductService {
         return productUseCase.create(product);
     }
 
-    public ProductResponseDto findById(Long id) {
+    public Optional<ProductResponseDto> findById(Long id) {
         return productUseCase
                 .findById(id)
-                .map(fullProductDto -> modelMapper.map(fullProductDto, ProductResponseDto.class))
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
+                .map(fullProductDto -> modelMapper.map(fullProductDto, ProductResponseDto.class));
     }
 
-    public ProductResponseDto deleteById(Long id) {
+    public Optional<ProductResponseDto> deleteById(Long id) {
         return productUseCase
                 .deleteById(id)
-                .map(fullProductDto -> modelMapper.map(fullProductDto, ProductResponseDto.class))
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NO_CONTENT, "Product not found"));
+                .map(fullProductDto -> modelMapper.map(fullProductDto, ProductResponseDto.class));
     }
 
 }
