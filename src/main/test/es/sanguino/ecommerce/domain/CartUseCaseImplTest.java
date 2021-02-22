@@ -71,6 +71,34 @@ public class CartUseCaseImplTest {
     }
 
     @Test
+    public void testGivenCartIdProdIdAndProdQuantityWhenAddProductAndCartExistsAndProductExistAndAlreadyAddedThenFullCartIsReturnedWithQuantityUpdated() {
+        Long cartId = 1L;
+        Long prodId = 2L;
+        Long prodQuantity = 3L;
+        Long currentQuantity = 4L;
+
+        String prodName = "product1";
+        Double prodPrice = 23.21;
+
+        FullProductDto fullProductDto = new FullProductDto(prodName, prodPrice);
+        HashMap<FullProductDto, Long> productsMap = new HashMap<>();
+        productsMap.put(fullProductDto, currentQuantity);
+        FullCartDto fullCartDto = new FullCartDto(cartId,productsMap, false);
+        when(this.cartRepository.findById(cartId)).thenReturn(Optional.of(fullCartDto));
+        when(this.productRepository.findById(prodId)).thenReturn(Optional.of(fullProductDto));
+        when(this.cartRepository.update(fullCartDto)).thenReturn(Optional.of(fullCartDto));
+
+        Optional<FullCartDto> returnedFullCartDto = this.cartUseCase.addOrUpdateProduct(cartId, prodId, prodQuantity);
+        verify(this.cartRepository, times(1)).findById(cartId);
+        verify(this.productRepository, times(1)).findById(prodId);
+
+        assertTrue(returnedFullCartDto.isPresent());
+        assertTrue(returnedFullCartDto.get().getProducts().containsKey(fullProductDto));
+        assertFalse(returnedFullCartDto.get().getProducts().containsValue(currentQuantity));
+        assertTrue(returnedFullCartDto.get().getProducts().containsValue(prodQuantity));
+    }
+
+    @Test
     public void testGivenCartIdProdIdAndProdQuantityWhenAddProductAndCartNotExistsThenOptionalEmptyIsReturned() {
         Long cartId = 1L;
         Long prodId = 2L;
